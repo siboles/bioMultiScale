@@ -1,0 +1,12 @@
+*.pyc
+*.xplt
+*.log
+*.feb
+*.vtr
+*.vtu
+*.vtp
+*.svg
+*.sh
+*.pvsm
+
+*_vtk_files
