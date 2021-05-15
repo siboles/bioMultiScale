@@ -1,0 +1,48 @@
+Micro Model Base Name: cell_scale_5
+Macro Model Geometry File: ../../tissue_scale/tissue_5percent.vtr
+Macro Model Plot File: ../../tissue_scale/tissue_5percent.xplt
+# A super-ellipsoid is used to model micro-scale.
+# PCM and Cell radii and squareness are specified.
+# The ECM radii are adjusted such that it comprises 
+# 90% of total model volume. This is done by uniformly
+# adding to the PCM radii values. The squareness is the
+# same as the PCM
+Shape Parameters:
+  PCM Radius: [6.976, 3.9763, 2.9175]
+  Cell Radius: [6.0, 3.0, 2.0]
+  PCM Squareness: [2.3, 2.3, 2.3] # Range 2-infinity (2 is ellipsoid; infinity a parallelopiped)
+  Cell Squareness: [2.3, 2.3, 2.3]
+
+Mesh Divisions:
+  Cell: 5.0
+  PCM: 4.0
+  ECM: 5.0
+
+Symmetry: full
+
+Cell Shifts:
+  neutral: 0.0
+
+Model Centroids:
+  - [25, 25, 490.]
+
+Material Properties:
+  # PCM - isotropic neo-Hooken
+  PCM E ratio: 0.1
+  PCM v ratio: 1.0
+  PCM beta ratio: 1.0
+  PCM perm ratio: 1.25
+  PCM m: 0.0
+  PCM alpha: 0.0
+  PCM phi: 0.1
+  # Isotropic neo-Hookean
+  Cell Modulus: 0.001
+  Cell Poisson: 0.0
+  Cell Permeability: 1.0e-3
+  Cell phi: 0.1
+  # Membrane
+  Membrane Modulus: 0.001
+  Membrane Poisson: 0.0
+  Membrane Permeability: 7.0e-10
+  Membrane phi: 0.1
+  Membrane Thickness: 1.0e-5
