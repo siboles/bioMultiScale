@@ -1,11 +1,13 @@
-import sys
 import os
+import sys
 import xml.etree.ElementTree as ET
 
 import febio
-import vtk
-from vtk.util import numpy_support
 import numpy as np
+import vtk
+from scipy.linalg import eigh
+from vtk.util import numpy_support
+
 
 def __indent(elem,level):
     i = '\n' + level*'  '
@@ -70,9 +72,9 @@ def getPrincipals(v):
                 np.zeros((v.shape[0], 3), dtype=float),
                 np.zeros((v.shape[0], 3), dtype=float)]
     for i in range(v.shape[0]):
-        l, w = np.linalg.eigh(np.array([[v[i, 0], v[i, 3], v[i, 5]],
-                                        [v[i, 3], v[i, 1], v[i, 4]],
-                                        [v[i, 5], v[i, 4], v[i, 2]]]))
+        l, w = eigh(np.array([[v[i, 0], v[i, 3], v[i, 5]],
+                              [v[i, 3], v[i, 1], v[i, 4]],
+                              [v[i, 5], v[i, 4], v[i, 2]]]))
         idx = np.argsort(l)
         l = l[idx]
         w = w[:, idx]
@@ -87,7 +89,7 @@ def writeToVTK(plt, variables, state, name):
                          'Lagrange strain',
                          'fluid flux']
     node_variables = ['displacement',
-                      'effective fluid pressure',]
+                      'effective fluid pressure']
     shell_element_variables = ['shell strain']
     variable_lengths = {'displacement': 3,
                         'effective fluid pressure': 1,
