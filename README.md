@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/367526047.svg)](https://zenodo.org/badge/latestdoi/367526047)
+
 Description
 ===========
 Automates the multiscale finite element modelling process for tissue to cellular scales. 
