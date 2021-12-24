@@ -11,7 +11,6 @@ from weighted import quantile
 sns.set('paper')
 
 
-
 def writeToVTK(name='dummy', data=None):
     writer = vtk.vtkXMLUnstructuredGridWriter()
     writer.SetFileName('{}.vtu'.format(name))

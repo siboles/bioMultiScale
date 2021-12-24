@@ -42,6 +42,7 @@ python -m pip install raster_geometry
 
 ---
 **Note**
+
 The conda environment must be active when the pip command above is executed!
 ---
 
@@ -86,6 +87,36 @@ must exist and be specified appropriately. Model generation is then achieved wit
 
 ```
 python -m bioMultiScale.CellScaleModel PATH_TO_YAML_FILE
+```
+
+Post-Processing
+---------------
+Several modules are provided for post-processing of FEBio solution files (".xplt" extension). To run as scripts
+execute:
+
+```
+python -m bioMultiScale.read_tissue_plot PATH_TO_MODEL_SOLUTION_FILE all
+```
+
+where the "all" indicates all time steps. Alternatively, a list of time values separated by spaces can be provided.
+
+This will create a directory with named BASENAME_OF_SOLUTION_FILE_vtk_files and contain vtk polydate files for each
+time step requested. Also, the data.pvd file allows for proper import of all files into ParaView for animation with
+proper time values.
+
+Likewise, for a cellular scale solution:
+
+```
+python -m bioMultiScale.read_cell_plot PATH_TO_MODEL_SOLUTION_FILE all
+```
+
+Here, two VTK file definitions ".vtk" and ".vtp" are written for the solid and shell elements, respectively. Importing
+the time sequence for animation is handled by opening the solid.pvd and shell.pvd files in ParaView.
+
+Finally, a list of VTK files can be processed for plotting and Excel file data formats with:
+
+```
+python -m bioMultiScale.process_vtk VTK_FILE_1 VTK_FILE_2 ...
 ```
 
 Material Fitting
