@@ -6,12 +6,50 @@ to other applications.
 
 Installation
 ============
-```buildoutcfg
-conda install febio pygalmesh vtk pyyaml pandas scipy seaborn wquantiles
+The Python package utilizes the conda package manager for dependency resolution. We recommend 
+installing the miniforge3 implementation of conda from <https://conda-forge.org/miniforge/>
+
+After conda installation first add the siboles channel by executing:
+
+```
+conda config --add channels siboles
 ```
 
-```buildoutcfg
+If you did not install miniforge3, you may also need to add the conda-forge channel with:
+
+```
+conda config --add channels conda-forge
+```
+
+One can then create an isolated conda environment with all necessary dependencies with the command:
+
+```
+conda create -n NAME_OF_ENVIRONMENT febio pygalmesh vtk pyyaml pandas scipy seaborn wquantiles
+```
+
+where, NAME_OF_ENVIRONMENT, is the user's choice. To use the bioMultiScale Python package
+the conda environment must be activated with:
+
+```
+conda activate NAME_OF_ENVIRONMENT
+```
+
+The raster_geometry package must be installed into the environment from PyPi with:
+
+```
 python -m pip install raster_geometry
+```
+
+---
+**Note**
+The conda environment must be active when the pip command above is executed!
+---
+
+Finally, bioMultiScale can be installed for system-wide execution with:
+
+```
+cd src
+python setup.py install
 ```
 
 Usage
@@ -25,7 +63,7 @@ Tissue Scale Model Generation
 Tissue scale models can be configured with YAML files, such as models/tissue_scale/tissue_5percent.yaml.
 The model can then be generated with:
 
-```buildoutcfg
+```
 python -m bioMultiScale.TissueScaleModel PATH_TO_YAML_FILE
 ```
 
@@ -34,7 +72,7 @@ extension. The names of these are specified in the YAML file.
 
 To solve the model, FEBio must be called with:
 
-```buildoutcfg
+```
 febio -i PATH_TO_MODEL_FILE 
 ```
 
@@ -46,7 +84,7 @@ Cellular scale models are, likewise, configured with YAML files such as models/c
 As the cellular model definition relies on results and geometry from the tissue scale model, these models and solutions
 must exist and be specified appropriately. Model generation is then achieved with:
 
-```buildoutcfg
+```
 python -m bioMultiScale.CellScaleModel PATH_TO_YAML_FILE
 ```
 
