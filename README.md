@@ -24,7 +24,7 @@ conda config --add channels conda-forge
 One can then create an isolated conda environment with all necessary dependencies with the command:
 
 ```
-conda create -n NAME_OF_ENVIRONMENT febio pygalmesh vtk pyyaml pandas scipy seaborn wquantiles
+conda create -n NAME_OF_ENVIRONMENT febio pygalmesh vtk pyyaml pandas scipy seaborn wquantiles meshio=4.4.6
 ```
 
 where, NAME_OF_ENVIRONMENT, is the user's choice. To use the bioMultiScale Python package
@@ -100,7 +100,7 @@ python -m bioMultiScale.read_tissue_plot PATH_TO_MODEL_SOLUTION_FILE all
 
 where the "all" indicates all time steps. Alternatively, a list of time values separated by spaces can be provided.
 
-This will create a directory with named BASENAME_OF_SOLUTION_FILE_vtk_files and contain vtk polydate files for each
+This will create a directory named BASENAME_OF_SOLUTION_FILE_vtk_files and contain vtk polydata files for each
 time step requested. Also, the data.pvd file allows for proper import of all files into ParaView for animation with
 proper time values.
 
